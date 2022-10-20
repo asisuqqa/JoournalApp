@@ -1,0 +1,78 @@
+﻿<Window x:Class="JournalApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JournalApp"
+        mc:Ignorable="d"
+        Title="Журнал" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+
+
+        <StackPanel Background="#c3d6dc" >
+            <Image Height="100" Source="Image1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="#c3d6dc" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
+            <Image Height="100" Source="Image2.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Label Content="Группы" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+        <StackPanel Grid.Row="2" Background="#c3d6dc" x:Name="Disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" >
+            <Image Height="100" Source="Image3.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="Дисциплины" HorizontalContentAlignment="Center" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Background="#c3d6dc">
+
+        </StackPanel>
+
+
+        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Slider Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="200" VerticalAlignment="Bottom"/>
+
+
+
+
+        <ListView Grid.Row="1"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="group"  MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" Grid.Column="1" Background="#c3d6dc" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="90" Height="20" MouseLeftButtonDown="GoGroup">
+                        <TextBlock Text="{Binding title}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        
+        <ScrollViewer  Visibility="Collapsed" x:Name="disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2" >
+            <StackPanel Grid.Column="1" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Width="90" >
+                <Button Content="Физика" Background="#c3d6dc"/>
+                <Button Content="Химия" Background="#c3d6dc"/>
+                <Button Content="Математика" Background="#c3d6dc"/>
+                <Button Content="Информатика" Background="#c3d6dc"/>
+                <Button Content="Философия" Background="#c3d6dc"/>
+                <Button Content="Физультура" Background="#c3d6dc"/>
+                <Button Content="Физика" Background="#c3d6dc" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

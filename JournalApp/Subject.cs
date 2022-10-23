@@ -18,17 +18,18 @@ namespace JournalApp
         public Subject()
         {
             this.Attendance = new HashSet<Attendance>();
+            this.Laboratory = new HashSet<Laboratory>();
             this.Progress = new HashSet<Progress>();
             this.StudenttoSubject = new HashSet<StudenttoSubject>();
         }
     
         public int id { get; set; }
         public string title { get; set; }
-        public int laboratorywork { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendance> Attendance { get; set; }
-        public virtual Laboratory Laboratory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Laboratory> Laboratory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Progress> Progress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

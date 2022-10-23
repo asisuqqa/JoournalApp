@@ -14,17 +14,11 @@ namespace JournalApp
     
     public partial class Laboratory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Laboratory()
-        {
-            this.Subject = new HashSet<Subject>();
-        }
-    
         public int id { get; set; }
         public string title { get; set; }
         public double maxball { get; set; }
+        public Nullable<int> idSubject { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subject> Subject { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }

@@ -29,6 +29,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="maxball" Type="float" Nullable="false" />
+          <Property Name="idSubject" Type="int" />
         </EntityType>
         <EntityType Name="Progress">
           <Key>
@@ -61,7 +62,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="laboratorywork" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -94,6 +94,18 @@
             </Principal>
             <Dependent Role="Attendance">
               <PropertyRef Name="idsubject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Laboratory_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Laboratory" Type="Self.Laboratory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Laboratory">
+              <PropertyRef Name="idSubject" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -157,18 +169,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Subject_Laboratory">
-          <End Role="Laboratory" Type="Self.Laboratory" Multiplicity="1" />
-          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Laboratory">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Subject">
-              <PropertyRef Name="laboratorywork" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище JournalBDModelContainer">
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
@@ -185,6 +185,10 @@
           <AssociationSet Name="FK_Attendance_Subject" Association="Self.FK_Attendance_Subject">
             <End Role="Subject" EntitySet="Subject" />
             <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Laboratory_Subject" Association="Self.FK_Laboratory_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Laboratory" EntitySet="Laboratory" />
           </AssociationSet>
           <AssociationSet Name="FK_Progress_Student" Association="Self.FK_Progress_Student">
             <End Role="Student" EntitySet="Student" />
@@ -205,10 +209,6 @@
           <AssociationSet Name="FK_StudenttoSubject_Subject" Association="Self.FK_StudenttoSubject_Subject">
             <End Role="Subject" EntitySet="Subject" />
             <End Role="StudenttoSubject" EntitySet="StudenttoSubject" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subject_Laboratory" Association="Self.FK_Subject_Laboratory">
-            <End Role="Laboratory" EntitySet="Laboratory" />
-            <End Role="Subject" EntitySet="Subject" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -243,7 +243,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="maxball" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Laboratory" FromRole="Laboratory" ToRole="Subject" />
+          <Property Name="idSubject" Type="Int32" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Laboratory_Subject" FromRole="Laboratory" ToRole="Subject" />
         </EntityType>
         <EntityType Name="Progress">
           <Key>
@@ -284,9 +285,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="laboratorywork" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Attendance" Relationship="Self.FK_Attendance_Subject" FromRole="Subject" ToRole="Attendance" />
-          <NavigationProperty Name="Laboratory" Relationship="Self.FK_Subject_Laboratory" FromRole="Subject" ToRole="Laboratory" />
+          <NavigationProperty Name="Laboratory" Relationship="Self.FK_Laboratory_Subject" FromRole="Subject" ToRole="Laboratory" />
           <NavigationProperty Name="Progress" Relationship="Self.FK_Progress_Subject" FromRole="Subject" ToRole="Progress" />
           <NavigationProperty Name="StudenttoSubject" Relationship="Self.FK_StudenttoSubject_Subject" FromRole="Subject" ToRole="StudenttoSubject" />
         </EntityType>
@@ -336,15 +336,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Subject_Laboratory">
-          <End Role="Laboratory" Type="Self.Laboratory" Multiplicity="1" />
-          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+        <Association Name="FK_Laboratory_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="Laboratory" Type="Self.Laboratory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Laboratory">
+            <Principal Role="Subject">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Subject">
-              <PropertyRef Name="laboratorywork" />
+            <Dependent Role="Laboratory">
+              <PropertyRef Name="idSubject" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -417,9 +417,9 @@
             <End Role="Group" EntitySet="Group" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
-          <AssociationSet Name="FK_Subject_Laboratory" Association="Self.FK_Subject_Laboratory">
-            <End Role="Laboratory" EntitySet="Laboratory" />
+          <AssociationSet Name="FK_Laboratory_Subject" Association="Self.FK_Laboratory_Subject">
             <End Role="Subject" EntitySet="Subject" />
+            <End Role="Laboratory" EntitySet="Laboratory" />
           </AssociationSet>
           <AssociationSet Name="FK_Progress_Student" Association="Self.FK_Progress_Student">
             <End Role="Student" EntitySet="Student" />
@@ -469,6 +469,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="maxball" ColumnName="maxball" />
+                <ScalarProperty Name="idSubject" ColumnName="idSubject" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -505,7 +506,6 @@
               <MappingFragment StoreEntitySet="Subject">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="laboratorywork" ColumnName="laboratorywork" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -67,6 +67,9 @@
     <Compile Include="AddGroupPage.xaml.cs">
       <DependentUpon>AddGroupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddSubjectPage.xaml.cs">
+      <DependentUpon>AddSubjectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Attendance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Page Include="AddGroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddSubjectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

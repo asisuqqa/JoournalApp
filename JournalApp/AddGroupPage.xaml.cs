@@ -26,12 +26,11 @@ namespace JournalApp
         public AddGroupPage()
         {
             InitializeComponent();
-            InitializeComponent();
             context = new JournalBDEntities();
             flag = true;
         }
-        bool flag;
 
+        bool flag;
 
         private void SaveGroup(object sender, RoutedEventArgs e)
         {
@@ -62,8 +61,8 @@ namespace JournalApp
             foreach (var line in lines)
             {
                 Student student = new Student();
-                vs = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                fio = vs[0];
+                vs = line.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                fio = vs[0]; 
                 student.fio = fio;
                 student.groups = lastGroup.id;
                 context.Student.Add(student);

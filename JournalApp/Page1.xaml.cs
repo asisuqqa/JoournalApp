@@ -29,5 +29,10 @@ namespace JournalApp
         {
             SecondFrame.Navigate(new AddGroupPage());
         }
+
+        private void AddSubject(object sender, RoutedEventArgs e)
+        {
+            SecondFrame.Navigate(new AddSubjectPage());
+        }
     }
 }

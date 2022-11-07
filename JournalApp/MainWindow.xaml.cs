@@ -24,9 +24,9 @@ namespace JournalApp
         public MainWindow()
         {
             InitializeComponent();
-            context = new JournalBDEntities();
-            List<Group> groups = context.Group.ToList(); 
+            context = new JournalBDEntities();            
             group.ItemsSource = context.Group.ToList();
+            disciplines.ItemsSource = context.Subject.ToList();
             MainFrame.Navigate(new Page1());
 
 
@@ -64,6 +64,15 @@ namespace JournalApp
             Group group = (sender as Grid).DataContext as Group;
             MainFrame.Navigate(new Page2(group,context));
  
+        }
+
+        private void GoHome(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount >= 1)
+            {
+                MainFrame.Navigate(new Page1());
+            }
+            
         }
     }
 }

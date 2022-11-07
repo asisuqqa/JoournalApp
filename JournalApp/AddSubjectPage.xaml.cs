@@ -52,14 +52,17 @@ namespace JournalApp
 
             Group IDgroup = context.Group.ToList().Find(x => x.title == groupBox.Text);
 
-            Student IDStudent = context.Student.ToList().Find(x => x.groups == IDgroup.id);
-
-            StudenttoSubject studenttoSubject = new StudenttoSubject
+            List<Student> IdStudent = context.Student.Where(x => x.groups == IDgroup.id).ToList();
+            foreach(var IDstudent in IdStudent)
             {
-                idstudent = IDStudent.id,
-                idsubject = IDSubject.id
-            };
-            context.StudenttoSubject.Add(studenttoSubject);
+                StudenttoSubject studenttoSubject = new StudenttoSubject
+                {
+                    idstudent = IDstudent.id,
+                    idsubject = IDSubject.id
+                };
+                context.StudenttoSubject.Add(studenttoSubject);
+            }     
+            
             context.SaveChanges();
         }
     }

@@ -34,5 +34,10 @@ namespace JournalApp
         {
             SecondFrame.Navigate(new AddSubjectPage());
         }
+
+        private void AddLab(object sender, RoutedEventArgs e)
+        {
+            SecondFrame.Navigate(new AddLabPage());
+        }
     }
 }

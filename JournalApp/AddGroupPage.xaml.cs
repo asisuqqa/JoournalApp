@@ -68,6 +68,7 @@ namespace JournalApp
                 context.Student.Add(student);
             }
             context.SaveChanges();
+           
         }
         Group gr;
 

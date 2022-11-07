@@ -22,9 +22,9 @@
 
 
 
-        <StackPanel Background="#c3d6dc" >
-            <Image Height="100" Source="Image1.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <StackPanel Background="#c3d6dc" MouseLeftButtonDown="GoHome" >
+            <Image Height="100" Source="Image1.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 </StackPanel>
 
         <StackPanel Grid.Row="1" Background="#c3d6dc" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
@@ -62,17 +62,20 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        
-        <ScrollViewer  Visibility="Collapsed" x:Name="disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Grid.Column="1" Grid.Row="2" >
-            <StackPanel Grid.Column="1" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Width="90" >
-                <Button Content="Физика" Background="#c3d6dc"/>
-                <Button Content="Химия" Background="#c3d6dc"/>
-                <Button Content="Математика" Background="#c3d6dc"/>
-                <Button Content="Информатика" Background="#c3d6dc"/>
-                <Button Content="Философия" Background="#c3d6dc"/>
-                <Button Content="Физультура" Background="#c3d6dc"/>
-                <Button Content="Физика" Background="#c3d6dc" />
-            </StackPanel>
-        </ScrollViewer>
+
+        <ListView Grid.Row="2"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="disciplines"  MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" Grid.Column="1" Background="#c3d6dc" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="90" Height="20" >
+                        <TextBlock Text="{Binding title}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </Window>

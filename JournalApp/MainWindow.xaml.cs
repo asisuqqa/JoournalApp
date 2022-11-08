@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Media;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace JournalApp
 {
@@ -29,6 +33,25 @@ namespace JournalApp
             disciplines.ItemsSource = context.Subject.ToList();
             MainFrame.Navigate(new Page1());
 
+            Task.Factory.StartNew(() =>
+            {
+                var files = new string[]
+                {
+                    "1.wav",
+                    "2.wav",
+                    "3.wav",
+                    "4.wav" };
+                var player = new SoundPlayer();
+
+                while (true)
+                {
+                    foreach (var file in files)
+                    {
+                        player.SoundLocation = file;
+                        player.PlaySync();
+                    }
+                }
+            }, TaskCreationOptions.LongRunning);
 
             //context = new masterEntities1();
             //group.ItemsSource = context.Group.Select(x => x.title).ToList();

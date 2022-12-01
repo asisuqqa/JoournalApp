@@ -26,7 +26,7 @@ namespace JournalApp
             InitializeComponent();
             context = new JournalBDEntities();
             var groupList = context.Group.ToList();
-            groupList.Insert(0, new Group() { title = "Все", id = 0 });
+            groupList.Insert(0, new Group() { id = 0 });
             groupBox.ItemsSource = groupList;
         }       
 

@@ -25,26 +25,33 @@ namespace JournalApp
         public Page2(Group group, JournalBDEntities context)
         {
             InitializeComponent();
-
+            
             this.group = group;
             this.context = context;
             var list = group.Student;
             utab.ItemsSource = list.ToList();
             ptab.ItemsSource = list.ToList();
+            var qlist = context.StudenttoSubject.Select(x => new { x.Student.id, x.Student.fio, x.Student.groups, x.idsubject }).Where(y => y.idsubject == group.id).ToList();
 
             var slist = context.Subject.ToList();
             slist.Insert(0, new Subject() { title = "Все", id = 0 });
             sbox.ItemsSource = slist;
             sbox.ItemsSource = context.Subject.ToList();
         }
-        public void Refreshdata()
-        {
-            var list = context.Subject.ToList();
-            if (sbox.SelectedIndex > 0)
-            {
-                Subject c = sbox.SelectedItem as Subject;
-                list = list.Where(x => x == c).ToList();
-            }
-        }
+        //public void Refreshdata()
+        //{
+        //    foreach (var item in qlist)
+        //    {
+
+        //    }
+        //    var list = context.Subject.ToList();
+        //    if (sbox.SelectedIndex > 0)
+        //    {
+        //        Subject c = sbox.SelectedItem as Subject;
+        //        list = list.Where(x => x. == c).ToList();
+        //    }
+        //    utab.ItemsSource = list;
+        //    ptab.ItemsSource = list;
+        //}
     } 
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JournalApp"
         mc:Ignorable="d"
-        Title="Журнал" Height="450" Width="800">
+        Title="Журнал" Height="450" Width="800"
+        Background="#c3d6dc">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -42,11 +43,8 @@
         </StackPanel>
 
 
-        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
-        <Slider Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="200" VerticalAlignment="Bottom"/>
-
-
-
+        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="White"/>
+        <Slider Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="200" VerticalAlignment="Center" />
 
         <ListView Grid.Row="1"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="group"  MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" Grid.Column="1" Background="#c3d6dc" >
             <ListView.ItemTemplate>
@@ -66,7 +64,7 @@
         <ListView Grid.Row="2"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="disciplines"  MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" Grid.Column="1" Background="#c3d6dc" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="90" Height="20" >
+                    <Grid Width="90" Height="20"  MouseLeftButtonDown="GoDisp" >
                         <TextBlock Text="{Binding title}"></TextBlock>
                     </Grid>
                 </DataTemplate>

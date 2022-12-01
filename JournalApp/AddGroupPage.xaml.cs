@@ -67,14 +67,16 @@ namespace JournalApp
                 student.groups = lastGroup.id;
                 context.Student.Add(student);
             }
-            context.SaveChanges();
-           
+            context.SaveChanges();          
         }
         Group gr;
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = "C:\\";
+            ofd.RestoreDirectory = true;
+            ofd.Multiselect = true;
             ofd.ShowDialog();
         }
     }

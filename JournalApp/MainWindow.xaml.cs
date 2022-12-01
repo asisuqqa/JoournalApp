@@ -33,28 +33,25 @@ namespace JournalApp
             disciplines.ItemsSource = context.Subject.ToList();
             MainFrame.Navigate(new Page1());
 
-            Task.Factory.StartNew(() =>
-            {
-                var files = new string[]
-                {
-                    "1.wav",
-                    "2.wav",
-                    "3.wav",
-                    "4.wav" };
-                var player = new SoundPlayer();
+            //Task.Factory.StartNew(() =>
+            //{
+            //    var files = new string[]
+            //    {
+            //        "1.wav",
+            //        "2.wav",
+            //        "3.wav",
+            //        "4.wav" };
+            //    var player = new SoundPlayer();
 
-                while (true)
-                {
-                    foreach (var file in files)
-                    {
-                        player.SoundLocation = file;
-                        player.PlaySync();
-                    }
-                }
-            }, TaskCreationOptions.LongRunning);
-
-            //context = new masterEntities1();
-            //group.ItemsSource = context.Group.Select(x => x.title).ToList();
+            //    while (true)
+            //    {
+            //        foreach (var file in files)
+            //        {
+            //            player.SoundLocation = file;
+            //            player.PlaySync();
+            //        }
+            //    }
+            //}, TaskCreationOptions.LongRunning);
         }
 
 
@@ -87,6 +84,11 @@ namespace JournalApp
             Group group = (sender as Grid).DataContext as Group;
             MainFrame.Navigate(new Page2(group,context));
  
+        }
+        private void GoDisp(object sender, MouseButtonEventArgs e)
+        {
+            Subject subject = (sender as Grid).DataContext as Subject;
+            MainFrame.Navigate(new DispPage(subject, context));
         }
 
         private void GoHome(object sender, MouseButtonEventArgs e)

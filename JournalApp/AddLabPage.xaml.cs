@@ -26,7 +26,7 @@ namespace JournalApp
             InitializeComponent();
             context = new JournalBDEntities();
             var slist = context.Subject.ToList();
-            slist.Insert(0, new Subject() { title = "Все", id = 0 });
+            slist.Insert(0, new Subject() { id = 0 });
             sbox.ItemsSource = slist;
             sbox.ItemsSource = context.Subject.ToList();
         }

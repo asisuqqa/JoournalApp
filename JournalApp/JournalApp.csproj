@@ -73,8 +73,12 @@
     <Compile Include="AddSubjectPage.xaml.cs">
       <DependentUpon>AddSubjectPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AttedanceStudent.cs" />
     <Compile Include="Attendance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DispPage.xaml.cs">
+      <DependentUpon>DispPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Group.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -124,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddSubjectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DispPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

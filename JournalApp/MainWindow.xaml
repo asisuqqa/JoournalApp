@@ -9,7 +9,7 @@
         Background="#c3d6dc">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -20,8 +20,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-
-
 
         <StackPanel Background="#c3d6dc" MouseLeftButtonDown="GoHome" >
             <Image Height="100" Source="Image1.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -44,7 +42,7 @@
 
 
         <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="White"/>
-        <Slider Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="200" VerticalAlignment="Center" />
+        <Slider Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="100" VerticalAlignment="Center" />
 
         <ListView Grid.Row="1"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="group"  MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" Grid.Column="1" Background="#c3d6dc" >
             <ListView.ItemTemplate>

@@ -6,35 +6,97 @@
       xmlns:local="clr-namespace:JournalApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page2"
-      Background="#c3d6dc">
-    <Grid>
+      Title="Page2">
+    <Grid Background="#c3d6dc">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="115"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="43*" />
-            <RowDefinition Height="26*"/>
-            <RowDefinition Height="381*"/>
-        </Grid.RowDefinitions>
+        <Label Content="Группы" Width="50" VerticalAlignment="Center" HorizontalAlignment="Left" Background="#c3d6dc"/>
+        <TextBox Width="172" Grid.Column="1" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+        <Button Width="97" Height="20" Grid.Column="2" Content="Добавить группу" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <DataGrid Grid.Row="2" Name="utab" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Студент" Width="*" Binding="{Binding fio}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" Background="#8170d8">
+            <ScrollViewer Height="100" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid Name="firsttab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Header="Номер студента" />
+                        <DataGridTextColumn Width="150" Header="ФИО" />
+                        <DataGridTextColumn Width="100" Header="Группа" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
 
-        <DataGrid Grid.Row="2" Grid.Column="1" Name="ptab" AutoGenerateColumns="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Студент"  Width="*" Binding="{Binding fio}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <ComboBox Name="sbox" Grid.Row="1" HorizontalAlignment="Center" Width="160" Height="26" DisplayMemberPath="title" />
-        <Label Content="Успеваемость" Background="#c3d6dc" FontSize="25" HorizontalAlignment="Center" Opacity="0.75"  />
-        <Label Content="Посещаемость" Grid.Column="1" Background="#c3d6dc" FontSize="25" HorizontalAlignment="Center" Opacity="0.75" />
+        <Grid Grid.Row="1" Grid.Column="3" Background="#8170d8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
+            <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"  Height="20" Margin="10" Text="Введите предмет" Foreground="Gray"/>
+            <ComboBox Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Height="20" Margin="10"/>
+            <StackPanel Grid.Column="1" Grid.RowSpan="3">
+                <Label Content="Успеваемость предмета" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                <Image Height="70" Source="Image4.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="4" Background="#8170d8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Успеваемость" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#8170d8"/>
+            <ScrollViewer Grid.Row="1" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="utab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
+                        <DataGridTextColumn Width="250" Header="Предмет" />
+                        <DataGridTextColumn Width="800" Header="Средний балл" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="4" Background="#8170d8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Посещаемость" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#8170d8"/>
+            <ScrollViewer Grid.Row="1" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="ptab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="150" Header="Предмет" />
+                        <DataGridTextColumn Width="100" Header="Дата" />
+                        <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
+                        <DataGridTextColumn Width="800" Header="Присутствие" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="4" Grid.ColumnSpan="4" Background="#8170d8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="36"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ComboBox Name="sbox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Height="20" Margin="10" DisplayMemberPath="title"/>
+            <Button Margin="10" Width="100" Grid.Row="1" Content="Сохранить" Background="#c3d6dc" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        </Grid>
     </Grid>
 </Page>

@@ -21,22 +21,31 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Background="#c3d6dc" MouseLeftButtonDown="GoHome" >
-            <Image Height="100" Source="Image1.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Rectangle Grid.RowSpan="4">
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <GradientStop Color="#4186d3" Offset="0"></GradientStop>
+                    <GradientStop Color="White" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <StackPanel Background="#4186d3" MouseLeftButtonDown="GoHome" >
+            <Image Height="100" Source="Image5.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 </StackPanel>
 
-        <StackPanel Grid.Row="1" Background="#c3d6dc" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
-            <Image Height="100" Source="Image2.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="1" Background="#4186d3" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
+            <Image Height="100" Source="Image6.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <Label Content="Группы" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </StackPanel>
 
-        <StackPanel Grid.Row="2" Background="#c3d6dc" x:Name="Disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" >
-            <Image Height="100" Source="Image3.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="2" Background="#4186d3" x:Name="Disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" >
+            <Image Height="100" Source="Image7.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Label Content="Дисциплины" HorizontalContentAlignment="Center" VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Background="#c3d6dc">
+        <StackPanel Grid.Row="4" Background="#4186d3">
 
         </StackPanel>
 

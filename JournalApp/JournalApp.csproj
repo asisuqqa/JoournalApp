@@ -207,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image4.png" />
+    <Resource Include="Image5.png" />
+    <Resource Include="Image6.png" />
+    <Resource Include="Image7.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

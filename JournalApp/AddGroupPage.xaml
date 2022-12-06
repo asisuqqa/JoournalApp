@@ -7,9 +7,34 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddGroupPage">
+    <Page.Resources>
+        <Style x:Key="ButtonClick" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsFocused" Value="True">
+                    <Setter Property="Button.Foreground" Value="#4186d3"/>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Foreground" Value="#4186d3"/>
+                    <Setter Property="Button.FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#4186d3"/>
+        </Style>
+    </Page.Resources>
 
     <Grid>
-        <Grid Background="#c3d6dc">
+        <Grid Background="#4186d3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -27,12 +52,15 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Content="Добавление Группы" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
-            <Label Content="Название Группы" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" FontSize="18"/>
+            <Label Content="Добавление Группы" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21" Grid.ColumnSpan="2" Grid.RowSpan="3" Foreground="White" Background="Transparent"/>
+            <Label Content="Название Группы" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" FontSize="18" Foreground="White" Background="Transparent"/>
             <TextBox Name="titleBox" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="3" FontSize="18" Margin="5" Width="250" Grid.Column="1"/>
-            <Button Content="Выбрать файл со студентами" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" FontSize="20" Click="WindowLoaded" Background="White"/>
-
-            <Button Content="Добавить" Grid.Row="9" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" FontSize="20" Click="SaveGroup" Background="White"/>
+            <Border Grid.Row="5" Grid.ColumnSpan="2" Height="30" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#4186d3">
+                <Button Content="Выбрать файл со студентами" FontSize="20" Click="WindowLoaded" Background="White" Style="{StaticResource ButtonClick}" Opacity="0.8"/>
+            </Border>
+            <Border Grid.Row="9" Grid.ColumnSpan="2" Height="30" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#4186d3">
+                <Button Content="Добавить" FontSize="20" Click="SaveGroup" Background="White" Style="{StaticResource ButtonClick}" Opacity="0.8"/>
+            </Border>
         </Grid>
     </Grid>
 </Page>

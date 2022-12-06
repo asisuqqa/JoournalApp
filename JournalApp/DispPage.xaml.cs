@@ -36,7 +36,16 @@ namespace JournalApp
             slist.Insert(0, new Group() { id = 0 });
             sbox.ItemsSource = slist;
             sbox.ItemsSource = context.Group.ToList();
-    
+
+            var groupList = context.Group.ToList();
+            groupList.Insert(0, new Group() { id = 0 });
+            groupBox.ItemsSource = groupList;
+
+            var tlist = context.Subject.ToList();
+            tlist.Insert(0, new Subject() { id = 0 });
+            tbox.ItemsSource = tlist;
+            tbox.ItemsSource = context.Subject.ToList();
+
         }
 
         private void Savetab(object sender, RoutedEventArgs e)
@@ -67,6 +76,55 @@ namespace JournalApp
                 list = list.Where(x => x == c).ToList();
             }
             utab.ItemsSource = list;
+        }
+
+        private void AddSubjectClick(object sender, RoutedEventArgs e)
+        {
+            Subject subject = new Subject()
+            {
+                title = titleSubjectBox.Text
+            };
+            context.Subject.Add(subject);
+            context.SaveChanges();
+
+            Subject IDSubject = context.Subject.ToList().Find(x => x.title == titleSubjectBox.Text);
+
+            Laboratory laboratory = new Laboratory()
+            {
+                title = titleLaboratoryBox.Text,
+                maxball = Convert.ToDouble(maxballBox.Text),
+                idSubject = IDSubject.id
+            };
+            context.Laboratory.Add(laboratory);
+            context.SaveChanges();
+
+            Group IDgroup = context.Group.ToList().Find(x => x.title == groupBox.Text);
+
+            List<Student> IdStudent = context.Student.Where(x => x.groups == IDgroup.id).ToList();
+            foreach (var IDstudent in IdStudent)
+            {
+                StudenttoSubject studenttoSubject = new StudenttoSubject
+                {
+                    idstudent = IDstudent.id,
+                    idsubject = IDSubject.id
+                };
+                context.StudenttoSubject.Add(studenttoSubject);
+            }
+
+            context.SaveChanges();
+        }
+
+        private void AddLabClick(object sender, RoutedEventArgs e)
+        {
+            Subject IDSubject = context.Subject.ToList().Find(x => x.title == sbox.Text); ;
+            Laboratory laboratory = new Laboratory()
+            {
+                title = tbox.Text,
+                maxball = Convert.ToDouble(maxballBox1.Text),
+                idSubject = IDSubject.id
+            };
+            context.Laboratory.Add(laboratory);
+            context.SaveChanges();
         }
     }
 }

@@ -8,7 +8,33 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddLabPage">
 
-    <Grid Background="#c3d6dc">
+    <Page.Resources>
+        <Style x:Key="ButtonClick" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsFocused" Value="True">
+                    <Setter Property="Button.Foreground" Value="#4186d3"/>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Foreground" Value="#4186d3"/>
+                    <Setter Property="Button.FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#4186d3"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#4186d3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -22,14 +48,15 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Content="Добавление Лабораторной" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Label Content="Название Предмета" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" FontSize="18" Margin="0,7,0,6" Width="216"/>
+        <Label Content="Добавление Лабораторной" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21" Grid.ColumnSpan="2" Grid.RowSpan="2" Foreground="White" Background="Transparent"/>
+        <Label Content="Название Предмета" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" FontSize="18" Margin="0,7,0,6" Width="216" Foreground="White" Background="Transparent"/>
         <ComboBox Name="sbox" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Width="250" Height="26" DisplayMemberPath="title" Margin="5,10,0,9"/>
-        <Label Content="Название Лабораторной" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" FontSize="18"/>
+        <Label Content="Название Лабораторной" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" FontSize="18" Foreground="White" Background="Transparent"/>
         <TextBox Name="Lbox" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="4" FontSize="18" Margin="5" Width="250" Grid.Column="1"/>
-        <Label Content="Максимальный Балл" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5" FontSize="18" Margin="0,6,0,7" Width="216"/>
+        <Label Content="Максимальный Балл" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5" FontSize="18" Margin="0,6,0,7" Width="216" Foreground="White" Background="Transparent"/>
         <TextBox Name="maxballBox" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="5" FontSize="18" Margin="5" Width="250" Grid.Column="1"/>
-
-        <Button Content="Добавить" Grid.Row="9" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" FontSize="20" Click="SaveLab" Background="White"/>
+        <Border Grid.Row="9" Grid.ColumnSpan="2" Height="30" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1" BorderBrush="#4186d3">
+            <Button Content="Добавить" FontSize="20" Click="SaveLab" Background="White" Style="{StaticResource ButtonClick}" Opacity="0.8"/>
+        </Border>
     </Grid>
 </Page>

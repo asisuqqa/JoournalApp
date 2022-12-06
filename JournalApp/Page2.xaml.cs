@@ -38,6 +38,29 @@ namespace JournalApp
             sbox.ItemsSource = slist;
             sbox.ItemsSource = context.Subject.ToList();
         }
+
+        private void DelateUs(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("Вы уверены, что хотите удалить?", "Подтверждение", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Attendance attendance = utab.SelectedItem as Attendance;
+                    context.Attendance.Remove(attendance);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка!");
+                }
+            }
+        }
+
+        private void AddGroupClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddGroupPage());
+        }
         //public void Refreshdata()
         //{
         //    foreach (var item in qlist)

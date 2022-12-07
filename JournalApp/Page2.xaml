@@ -156,8 +156,8 @@
                             <DataGrid x:Name="utab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
-                                    <DataGridTextColumn Width="250" Header="Предмет" />
-                                    <DataGridTextColumn Width="800" Header="Средний балл" />
+                                    <DataGridTextColumn Width="250" Header="Предмет" Binding="{Binding titleSubjects}"/>
+                                    <DataGridTextColumn Width="800" Header="Средний балл" Binding="{Binding rating}"/>
                                 </DataGrid.Columns>
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
@@ -177,10 +177,10 @@
                         <ScrollViewer Grid.Row="1" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <DataGrid x:Name="ptab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="150" Header="Предмет" />
-                                    <DataGridTextColumn Width="100" Header="Дата" />
+                                    <DataGridTextColumn Width="150" Header="Предмет" Binding="{Binding titleSubject}"/>
+                                    <DataGridTextColumn Width="100" Header="Дата" Binding="{Binding DateShort}"/>
                                     <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
-                                    <DataGridTextColumn Width="800" Header="Присутствие" />
+                                    <DataGridTextColumn Width="800" Header="Присутствие" Binding="{Binding presence}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </ScrollViewer>

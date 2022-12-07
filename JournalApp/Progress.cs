@@ -18,7 +18,11 @@ namespace JournalApp
         public double rating { get; set; }
         public int idstudent { get; set; }
         public int idsubject { get; set; }
-    
+
+        public string fioStudents { get => Student.fio; }
+
+        public string titleSubjects { get => Subject.title; }
+
         public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
     }

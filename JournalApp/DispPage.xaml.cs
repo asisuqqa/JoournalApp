@@ -29,24 +29,26 @@ namespace JournalApp
             this.subject = subject;
             this.context = context;
             var list = context.StudenttoSubject.Select(x => new { x.Student.id, x.Student.fio, x.Student.groups, x.idsubject }).Where(y => y.idsubject == subject.id).ToList();
-            attedancestd = list.Select(x => new AttedanceStudent { IdStudent = x.id, IdSubject = x.idsubject, Presence = null, Date = null, Fio = x.fio }).ToList();
+            attedancestd = list.Select(x => new AttedanceStudent { IdStudent = x.id, IdSubject = x.idsubject, Presence = null, Date = null, Fio = x.fio, Rating = 0, Groups = x.groups }).ToList();
             utab.ItemsSource = attedancestd.ToList();
+            btab.ItemsSource = attedancestd.ToList();
 
             var slist = context.Group.ToList();
-            slist.Insert(0, new Group() { id = 0 });
+            slist.Insert(0, new Group() {id = 0});
             sbox.ItemsSource = slist;
-            sbox.ItemsSource = context.Group.ToList();
+            bbox.ItemsSource = slist;
 
             var groupList = context.Group.ToList();
-            groupList.Insert(0, new Group() { id = 0 });
+            groupList.Insert(0, new Group() {id = 0});
             groupBox.ItemsSource = groupList;
 
             var tlist = context.Subject.ToList();
-            tlist.Insert(0, new Subject() { id = 0 });
+            tlist.Insert(0, new Subject() {id = 0});
             tbox.ItemsSource = tlist;
             tbox.ItemsSource = context.Subject.ToList();
 
         }
+
 
         private void Savetab(object sender, RoutedEventArgs e)
         {
@@ -59,23 +61,13 @@ namespace JournalApp
                     idstudent = attedanceStudent.IdStudent,
                     date = (DateTime)date.SelectedDate,
                     idsubject = subject.id,
-                    presence = attedanceStudent.Presence == null ? false:true,
-                   
-            };
-                context.Attendance.Add(attendance);
-            }          
-            context.SaveChanges();
+                    presence = attedanceStudent.Presence == null ? false : true,
 
-        }
-        public void Refreshdata()
-        {
-            var list = context.Group.ToList();
-            if (sbox.SelectedIndex > 0)
-            {
-                Group c = sbox.SelectedItem as Group;
-                list = list.Where(x => x == c).ToList();
+                };
+                context.Attendance.Add(attendance);
             }
-            utab.ItemsSource = list;
+            context.SaveChanges();
+            MessageBox.Show("Успешно");
         }
 
         private void AddSubjectClick(object sender, RoutedEventArgs e)
@@ -86,6 +78,7 @@ namespace JournalApp
             };
             context.Subject.Add(subject);
             context.SaveChanges();
+            MessageBox.Show("Успешно");
 
             Subject IDSubject = context.Subject.ToList().Find(x => x.title == titleSubjectBox.Text);
 
@@ -97,6 +90,7 @@ namespace JournalApp
             };
             context.Laboratory.Add(laboratory);
             context.SaveChanges();
+            MessageBox.Show("Успешно");
 
             Group IDgroup = context.Group.ToList().Find(x => x.title == groupBox.Text);
 
@@ -110,21 +104,55 @@ namespace JournalApp
                 };
                 context.StudenttoSubject.Add(studenttoSubject);
             }
-
             context.SaveChanges();
+            MessageBox.Show("Успешно");
         }
 
         private void AddLabClick(object sender, RoutedEventArgs e)
         {
-            Subject IDSubject = context.Subject.ToList().Find(x => x.title == sbox.Text); ;
+            Subject IDSubject = context.Subject.ToList().Find(x => x.title == tbox.Text); ;
             Laboratory laboratory = new Laboratory()
             {
-                title = tbox.Text,
+                title = Lbox.Text,
                 maxball = Convert.ToDouble(maxballBox1.Text),
                 idSubject = IDSubject.id
             };
             context.Laboratory.Add(laboratory);
             context.SaveChanges();
+            MessageBox.Show("Успешно");
+        }
+
+        private void Ref2(object sender, SelectionChangedEventArgs e)
+        {
+            Group group = bbox.SelectedItem as Group;
+            var listt = attedancestd.Where(x => x.Groups == group.id).ToList();
+            btab.ItemsSource = listt;
+            btab.Items.Refresh();
+        }
+
+        private void Ref1(object sender, SelectionChangedEventArgs e)
+        {
+            Group group = sbox.SelectedItem as Group;
+            var listt = attedancestd.Where(x => x.Groups == group.id).ToList();
+            utab.ItemsSource = listt;
+            utab.Items.Refresh();
+        }
+
+        private void Savetabb(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in utab.ItemsSource)
+            {
+                AttedanceStudent attedanceStudent = item as AttedanceStudent;
+                Progress progress = new Progress()
+                {
+                    idstudent = attedanceStudent.IdStudent,
+                    idsubject = attedanceStudent.IdSubject,
+                    rating = attedanceStudent.Rating,
+                };
+                context.Progress.Add(progress);
+            }
+            context.SaveChanges();
+            MessageBox.Show("Успешно");
         }
     }
 }

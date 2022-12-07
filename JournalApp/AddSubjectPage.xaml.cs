@@ -61,9 +61,9 @@ namespace JournalApp
                     idsubject = IDSubject.id
                 };
                 context.StudenttoSubject.Add(studenttoSubject);
-            }     
-            
+            }                 
             context.SaveChanges();
+            MessageBox.Show("Успешно");
         }
     }
 }

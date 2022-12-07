@@ -67,7 +67,8 @@ namespace JournalApp
                 student.groups = lastGroup.id;
                 context.Student.Add(student);
             }
-            context.SaveChanges();          
+            context.SaveChanges();
+            MessageBox.Show("Успешно");
         }
         Group gr;
 

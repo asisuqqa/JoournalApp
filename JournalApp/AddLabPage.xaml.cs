@@ -33,15 +33,16 @@ namespace JournalApp
 
         private void SaveLab(object sender, RoutedEventArgs e)
         {
-            Subject IDSubject = context.Subject.ToList().Find(x => x.title == sbox.Text); ;
+            Subject IDSubject = context.Subject.ToList().Find(x => x.title == Lbox.Text); ;
             Laboratory laboratory = new Laboratory()
             {
-                title = sbox.Text,
+                title = Lbox.Text,
                 maxball = Convert.ToDouble(maxballBox.Text),
                 idSubject = IDSubject.id
             };
             context.Laboratory.Add(laboratory);
             context.SaveChanges();
+            MessageBox.Show("Успешно");
         }
     }
 }

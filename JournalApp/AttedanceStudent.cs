@@ -13,5 +13,7 @@ namespace JournalApp
         public bool? Presence { get; set; }
         public DateTime? Date { get; set; }
         public string Fio { get; set; }
+        public double Rating { get; set; }
+        public int Groups { get; set; }
     }
 }

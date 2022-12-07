@@ -32,6 +32,7 @@ namespace JournalApp
             group.ItemsSource = context.Group.ToList();
             disciplines.ItemsSource = context.Subject.ToList();
             MainFrame.Navigate(new Page1());
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             //Task.Factory.StartNew(() =>
             //{

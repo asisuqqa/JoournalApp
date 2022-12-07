@@ -19,13 +19,12 @@ namespace JournalApp
         public bool presence { get; set; }
         public int idstudent { get; set; }
         public int idsubject { get; set; }
-
         public string DateShort { get => date.ToShortDateString(); }
 
-        public string fioStudent { get => Student.fio; }
+        //public string fioStudent { get => Student.fio; }
 
-        public string titleSubject { get => Subject.title; }
-    
+        //public string titleSubject { get => Subject.title; }
+
         public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
     }

@@ -28,15 +28,13 @@ namespace JournalApp
             
             this.group = group;
             this.context = context;
+            double avg = context.Progress.Average(x => x.rating);
+            var qlist = context.Progress.Select(x => new { x.Student.groups, x.Student.fio, x.Subject.title,x.rating}).Where(x => x.groups == group.id).ToList();
+            var list = context.Attendance.Select(x => new { x.Student.groups,x.Student.fio,x.Subject.title,x.presence,x.date}).Where(x=>x.groups==group.id).ToList();
+            ptab.ItemsSource = list.ToList();         
+            utab.ItemsSource = qlist.ToList();
 
-            var list = group.Student;
-            utab.ItemsSource = list.ToList();
-            ptab.ItemsSource = list.ToList();
-
-            /*ptab.ItemsSource = context.Attendance.ToList();
-            utab.ItemsSource = context.Progress.ToList();*/
-            
-            //var qlist = context.StudenttoSubject.Select(x => new { x.Student.id, x.Student.fio, x.Student.groups, x.idsubject }).Where(y => y.idsubject == group.id).ToList();
+           
 
             var slist = context.Subject.ToList();
             slist.Insert(0, new Subject() { title = "Все", id = 0 });
@@ -66,20 +64,5 @@ namespace JournalApp
         {
             NavigationService.Navigate(new AddGroupPage());
         }
-        //public void Refreshdata()
-        //{
-        //    foreach (var item in qlist)
-        //    {
-
-        //    }
-        //    var list = context.Subject.ToList();
-        //    if (sbox.SelectedIndex > 0)
-        //    {
-        //        Subject c = sbox.SelectedItem as Subject;
-        //        list = list.Where(x => x. == c).ToList();
-        //    }
-        //    utab.ItemsSource = list;
-        //    ptab.ItemsSource = list;
-        //}
     } 
 }

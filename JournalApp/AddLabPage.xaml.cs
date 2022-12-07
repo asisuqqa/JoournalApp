@@ -28,7 +28,6 @@ namespace JournalApp
             var slist = context.Subject.ToList();
             slist.Insert(0, new Subject() { id = 0 });
             sbox.ItemsSource = slist;
-            sbox.ItemsSource = context.Subject.ToList();
         }
 
         private void SaveLab(object sender, RoutedEventArgs e)

@@ -156,7 +156,7 @@
                             <DataGrid x:Name="utab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
-                                    <DataGridTextColumn Width="250" Header="Предмет" Binding="{Binding titleSubjects}"/>
+                                    <DataGridTextColumn Width="250" Header="Предмет" Binding="{Binding title}"/>
                                     <DataGridTextColumn Width="800" Header="Средний балл" Binding="{Binding rating}"/>
                                 </DataGrid.Columns>
                                 <DataGrid.ContextMenu>
@@ -177,8 +177,8 @@
                         <ScrollViewer Grid.Row="1" CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <DataGrid x:Name="ptab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="150" Header="Предмет" Binding="{Binding titleSubject}"/>
-                                    <DataGridTextColumn Width="100" Header="Дата" Binding="{Binding DateShort}"/>
+                                    <DataGridTextColumn Width="150" Header="Предмет" Binding="{Binding title}"/>
+                                    <DataGridTextColumn Width="100" Header="Дата" Binding="{Binding date}"/>
                                     <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
                                     <DataGridTextColumn Width="800" Header="Присутствие" Binding="{Binding presence}"/>
                                 </DataGrid.Columns>

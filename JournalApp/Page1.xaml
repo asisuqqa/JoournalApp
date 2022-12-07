@@ -22,6 +22,7 @@
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Row="1" Grid.ColumnSpan="6" Background="#4186d3">
+            
         </DataGrid>
 
         <TextBox Width="172" Height="25" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"/>

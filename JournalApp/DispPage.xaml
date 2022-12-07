@@ -62,9 +62,10 @@
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="180"/>
                 <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle Grid.ColumnSpan="4">
+            <Rectangle Grid.ColumnSpan="7">
                 <Rectangle.Fill>
                     <LinearGradientBrush>
                         <GradientStop Color="#4186d3" Offset="0"></GradientStop>

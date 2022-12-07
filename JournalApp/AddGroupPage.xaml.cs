@@ -34,6 +34,12 @@ namespace JournalApp
 
         private void SaveGroup(object sender, RoutedEventArgs e)
         {
+            string pathfile = "C://";
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == true)
+            {
+                pathfile=Convert.ToString(ofd.FileName);
+            }
             if (flag == true)
             {
 
@@ -54,7 +60,7 @@ namespace JournalApp
 
             Group lastGroup = context.Group.ToList().Find(x => x.title == titleBox.Text);
 
-            string[] lines = File.ReadAllLines(@"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Spisok.txt");
+            string[] lines = File.ReadAllLines(pathfile);
             int i = lines.Count();
             string[] vs = new string[i];
             string fio;
@@ -74,11 +80,11 @@ namespace JournalApp
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = "C:\\";
-            ofd.RestoreDirectory = true;
-            ofd.Multiselect = true;
-            ofd.ShowDialog();
+
+            //OpenFileDialog ofd = new OpenFileDialog();          
+            //ofd.RestoreDirectory = true;
+            //ofd.Multiselect = true;
+            //ofd.ShowDialog();
         }
     }
 }

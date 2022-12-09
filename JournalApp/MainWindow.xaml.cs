@@ -34,25 +34,7 @@ namespace JournalApp
             MainFrame.Navigate(new Page1());
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            //Task.Factory.StartNew(() =>
-            //{
-            //    var files = new string[]
-            //    {
-            //        "1.wav",
-            //        "2.wav",
-            //        "3.wav",
-            //        "4.wav" };
-            //    var player = new SoundPlayer();
 
-            //    while (true)
-            //    {
-            //        foreach (var file in files)
-            //        {
-            //            player.SoundLocation = file;
-            //            player.PlaySync();
-            //        }
-            //    }
-            //}, TaskCreationOptions.LongRunning);
         }
 
 
@@ -99,6 +81,29 @@ namespace JournalApp
                 MainFrame.Navigate(new Page1());
             }
             
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var files = new string[]
+                {
+                    "1.wav",
+                    "2.wav",
+                    "3.wav",
+                    "4.wav" };
+                var player = new SoundPlayer();
+
+                while (true)
+                {
+                    foreach (var file in files)
+                    {
+                        player.SoundLocation = file;
+                        player.PlaySync();
+                    }
+                }
+            }, TaskCreationOptions.LongRunning);
         }
     }
 }

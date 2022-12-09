@@ -20,9 +20,13 @@ namespace JournalApp
     /// </summary>
     public partial class Page1 : Page
     {
+        JournalBDEntities context;
         public Page1()
         {
             InitializeComponent();
+            JournalBDEntities context = new JournalBDEntities();
+            var list = context.Laboratory.Select(x => new { x.title, x.maxball, x.idSubject}).ToList();
+            ltab.ItemsSource = list.ToList();
         }
 
         private void AddGroup(object sender, RoutedEventArgs e)

@@ -46,12 +46,13 @@
         </StackPanel>
 
         <StackPanel Grid.Row="4" Background="#4186d3">
-
+            <Slider Value="0" Minimum="0" Maximum="100" SelectionStart="0" Height="30" 
+        IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanged" />
         </StackPanel>
 
 
         <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="White"/>
-        <Slider Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"  Height="20" Width="100" VerticalAlignment="Center" />
+        
 
         <ListView Grid.Row="1"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="group"  MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" Grid.Column="1" Background="#4186d3" >
             <ListView.ItemTemplate>

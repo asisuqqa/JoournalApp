@@ -15,6 +15,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="100"/>
@@ -23,19 +24,19 @@
             <ColumnDefinition Width="87"/>
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
+        
         <DataGrid Grid.Row="2" AutoGenerateColumns="False" Grid.ColumnSpan="6" Background="#4186d3" Name="ltab">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Лабароторная" Width="*" Binding="{Binding title}"/>
                 <DataGridTextColumn Header="Максимальный бал" Width="*" Binding="{Binding maxball}"/>
             </DataGrid.Columns>
         </DataGrid>
-      
 
         <TextBox Width="172" Height="25" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"/>
         <Button Width="97" Height="25" Grid.Column="2" Content="Добавить группу" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddGroup"/>
         <Button Width="97" Height="25" Grid.Column="3" Content="Создать предмет" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddSubject"/>
         <Button Width="85" Height="25" Grid.Column="4" Content="Добавить лабу" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddLab"/>
         <Button Width="38" Height="25" Grid.Column="5" Content="Выйти" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Frame Grid.ColumnSpan ="6" Grid.RowSpan="2" x:Name="SecondFrame" NavigationUIVisibility="Hidden"/>
-    </Grid>    
+        <Frame Grid.ColumnSpan ="6" Grid.RowSpan="3" x:Name="SecondFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
 </Page>

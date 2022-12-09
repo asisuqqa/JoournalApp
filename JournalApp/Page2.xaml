@@ -161,7 +161,9 @@
                                 </DataGrid.Columns>
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
+                                        <MenuItem Header="Добавить" Click="AddUs"/>                                        
                                         <MenuItem Header="Удалить" Click="DelateUs"/>
+                                        <MenuItem Header="Редактировать" Click="EditUs"/>
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
                             </DataGrid>
@@ -178,10 +180,17 @@
                             <DataGrid x:Name="ptab" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="150" Header="Предмет" Binding="{Binding title}"/>
-                                    <DataGridTextColumn Width="100" Header="Дата" Binding="{Binding date}"/>
+                                    <DataGridTextColumn Width="65" Header="Дата" Binding="{Binding date}"/>
                                     <DataGridTextColumn Width="250" Header="Студент" Binding="{Binding fio}"/>
                                     <DataGridTextColumn Width="800" Header="Присутствие" Binding="{Binding presence}"/>
                                 </DataGrid.Columns>
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Добавить" Click="AddPos"/>
+                                        <MenuItem Header="Удалить" Click="DelatePos"/>
+                                        <MenuItem Header="Редактировать" Click="EditPos"/>
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
                             </DataGrid>
                         </ScrollViewer>
                     </Grid>
@@ -197,5 +206,6 @@
                 </Grid>
             </Border>
         </Grid>
+        <Frame Grid.RowSpan="2" x:Name="thirdFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

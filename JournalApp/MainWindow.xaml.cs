@@ -33,13 +33,7 @@ namespace JournalApp
             disciplines.ItemsSource = context.Subject.ToList();
             MainFrame.Navigate(new Page1());
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
-
         }
-
-
-
-
 
         private void disciplinesMouseEnter(object sender, MouseEventArgs e)
         {
@@ -79,8 +73,7 @@ namespace JournalApp
             if (e.ClickCount >= 1)
             {
                 MainFrame.Navigate(new Page1());
-            }
-            
+            }            
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -32,9 +32,7 @@ namespace JournalApp
             var qlist = context.Progress.Select(x => new { x.Student.groups, x.Student.fio, x.Subject.title,x.rating}).Where(x => x.groups == group.id).ToList();
             var list = context.Attendance.Select(x => new { x.Student.groups,x.Student.fio,x.Subject.title,x.presence,x.date}).Where(x=>x.groups==group.id).ToList();
             ptab.ItemsSource = list.ToList();         
-            utab.ItemsSource = qlist.ToList();
-
-           
+            utab.ItemsSource = qlist.ToList();           
 
             var slist = context.Subject.ToList();
             slist.Insert(0, new Subject() { title = "Все", id = 0 });
@@ -49,8 +47,8 @@ namespace JournalApp
             {
                 try
                 {
-                    Attendance attendance = utab.SelectedItem as Attendance;
-                    context.Attendance.Remove(attendance);
+                    Progress progress = utab.SelectedItem as Progress;
+                    context.Progress.Remove(progress);
                     context.SaveChanges();
                 }
                 catch
@@ -63,6 +61,44 @@ namespace JournalApp
         private void AddGroupClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddGroupPage());
+        }
+
+        private void DelatePos(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("Вы уверены, что хотите удалить?", "Подтверждение", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Attendance attendance = ptab.SelectedItem as Attendance;
+                    context.Attendance.Remove(attendance);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка!");
+                }
+            }
+        }
+
+        private void AddPos(object sender, RoutedEventArgs e)
+        {
+            thirdFrame.Navigate(new AddPos());
+        }
+
+        private void AddUs(object sender, RoutedEventArgs e)
+        {
+            thirdFrame.Navigate(new AddUs());
+        }
+
+        private void EditUs(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Функция в разработке :C", "Подтверждение", MessageBoxButton.OK);
+        }
+
+        private void EditPos(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Функция в разработке :C", "Подтверждение", MessageBoxButton.OK);
         }
     } 
 }

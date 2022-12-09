@@ -16,35 +16,31 @@ using System.Windows.Shapes;
 namespace JournalApp
 {
     /// <summary>
-    /// Логика взаимодействия для AddLabPage.xaml
+    /// Логика взаимодействия для AddUs.xaml
     /// </summary>
-    public partial class AddLabPage : Page
+    public partial class AddUs : Page
     {
         JournalBDEntities context;
-        public AddLabPage()
+        public AddUs()
         {
             InitializeComponent();
             context = new JournalBDEntities();
-            var slist = context.Subject.ToList();
-            slist.Insert(0, new Subject() { id = 0 });
-            sbox.ItemsSource = slist;
         }
 
-        private void SaveLab(object sender, RoutedEventArgs e)
+        private void AddUsButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                Subject IDSubject = context.Subject.ToList().Find(x => x.title == Lbox.Text); ;
-                Laboratory laboratory = new Laboratory()
+                Progress progress = new Progress()
                 {
-                    title = Lbox.Text,
-                    maxball = Convert.ToDouble(maxballBox.Text),
-                    idSubject = IDSubject.id
+                    rating = Convert.ToDouble(ballBox.Text),
+                    idstudent = Convert.ToInt32(studentBox.Text),
+                    idsubject = Convert.ToInt32(subjectBox.Text)
                 };
-                context.Laboratory.Add(laboratory);
+                context.Progress.Add(progress);
                 context.SaveChanges();
-                MessageBox.Show("Успешно");
-            }            
+                fifthFrame.Navigate(new Page1());
+            }
             catch
             {
                 MessageBox.Show("Упс, что-то пошло не так");

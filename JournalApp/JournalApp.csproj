@@ -70,8 +70,14 @@
     <Compile Include="AddLabPage.xaml.cs">
       <DependentUpon>AddLabPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddPos.xaml.cs">
+      <DependentUpon>AddPos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddSubjectPage.xaml.cs">
       <DependentUpon>AddSubjectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddUs.xaml.cs">
+      <DependentUpon>AddUs.xaml</DependentUpon>
     </Compile>
     <Compile Include="AttedanceStudent.cs" />
     <Compile Include="Attendance.cs">
@@ -127,7 +133,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddPos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddSubjectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddUs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,8 +18,7 @@ namespace JournalApp
         public string title { get; set; }
         public double maxball { get; set; }
         public Nullable<int> idSubject { get; set; }
-        public string tutl { get => Subject.title; }
-
+    
         public virtual Subject Subject { get; set; }
     }
 }

@@ -52,107 +52,148 @@ namespace JournalApp
 
         private void Savetab(object sender, RoutedEventArgs e)
         {
-
-            foreach (var item in utab.ItemsSource)
+            try
             {
-                AttedanceStudent attedanceStudent = item as AttedanceStudent;
-                Attendance attendance = new Attendance()
+                foreach (var item in utab.ItemsSource)
                 {
-                    idstudent = attedanceStudent.IdStudent,
-                    date = (DateTime)date.SelectedDate,
-                    idsubject = subject.id,
-                    presence = attedanceStudent.Presence == null ? false : true,
+                    AttedanceStudent attedanceStudent = item as AttedanceStudent;
+                    Attendance attendance = new Attendance()
+                    {
+                        idstudent = attedanceStudent.IdStudent,
+                        date = (DateTime)date.SelectedDate,
+                        idsubject = subject.id,
+                        presence = attedanceStudent.Presence == null ? false : true,
 
-                };
-                context.Attendance.Add(attendance);
+                    };
+                    context.Attendance.Add(attendance);
+                }
+                context.SaveChanges();
+                MessageBox.Show("Успешно");
             }
-            context.SaveChanges();
-            MessageBox.Show("Успешно");
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
         }
 
         private void AddSubjectClick(object sender, RoutedEventArgs e)
         {
-            Subject subject = new Subject()
+            try
             {
-                title = titleSubjectBox.Text
-            };
-            context.Subject.Add(subject);
-            context.SaveChanges();
-            MessageBox.Show("Успешно");
-
-            Subject IDSubject = context.Subject.ToList().Find(x => x.title == titleSubjectBox.Text);
-
-            Laboratory laboratory = new Laboratory()
-            {
-                title = titleLaboratoryBox.Text,
-                maxball = Convert.ToDouble(maxballBox.Text),
-                idSubject = IDSubject.id
-            };
-            context.Laboratory.Add(laboratory);
-            context.SaveChanges();
-            MessageBox.Show("Успешно");
-
-            Group IDgroup = context.Group.ToList().Find(x => x.title == groupBox.Text);
-
-            List<Student> IdStudent = context.Student.Where(x => x.groups == IDgroup.id).ToList();
-            foreach (var IDstudent in IdStudent)
-            {
-                StudenttoSubject studenttoSubject = new StudenttoSubject
+                Subject subject = new Subject()
                 {
-                    idstudent = IDstudent.id,
-                    idsubject = IDSubject.id
+                    title = titleSubjectBox.Text
                 };
-                context.StudenttoSubject.Add(studenttoSubject);
+                context.Subject.Add(subject);
+                context.SaveChanges();
+                MessageBox.Show("Успешно");
+
+                Subject IDSubject = context.Subject.ToList().Find(x => x.title == titleSubjectBox.Text);
+
+                Laboratory laboratory = new Laboratory()
+                {
+                    title = titleLaboratoryBox.Text,
+                    maxball = Convert.ToDouble(maxballBox.Text),
+                    idSubject = IDSubject.id
+                };
+                context.Laboratory.Add(laboratory);
+                context.SaveChanges();
+                MessageBox.Show("Успешно");
+
+                Group IDgroup = context.Group.ToList().Find(x => x.title == groupBox.Text);
+
+                List<Student> IdStudent = context.Student.Where(x => x.groups == IDgroup.id).ToList();
+                foreach (var IDstudent in IdStudent)
+                {
+                    StudenttoSubject studenttoSubject = new StudenttoSubject
+                    {
+                        idstudent = IDstudent.id,
+                        idsubject = IDSubject.id
+                    };
+                    context.StudenttoSubject.Add(studenttoSubject);
+                }
+                context.SaveChanges();
+                MessageBox.Show("Успешно");
             }
-            context.SaveChanges();
-            MessageBox.Show("Успешно");
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
         }
 
         private void AddLabClick(object sender, RoutedEventArgs e)
         {
-            Subject IDSubject = context.Subject.ToList().Find(x => x.title == tbox.Text); ;
-            Laboratory laboratory = new Laboratory()
+            try
             {
-                title = Lbox.Text,
-                maxball = Convert.ToDouble(maxballBox1.Text),
-                idSubject = IDSubject.id
-            };
-            context.Laboratory.Add(laboratory);
-            context.SaveChanges();
-            MessageBox.Show("Успешно");
+                Subject IDSubject = context.Subject.ToList().Find(x => x.title == tbox.Text); ;
+                Laboratory laboratory = new Laboratory()
+                {
+                    title = Lbox.Text,
+                    maxball = Convert.ToDouble(maxballBox1.Text),
+                    idSubject = IDSubject.id
+                };
+                context.Laboratory.Add(laboratory);
+                context.SaveChanges();
+                MessageBox.Show("Успешно");
+            }
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
         }
 
         private void Ref2(object sender, SelectionChangedEventArgs e)
         {
-            Group group = bbox.SelectedItem as Group;
-            var listt = attedancestd.Where(x => x.Groups == group.id).ToList();
-            btab.ItemsSource = listt;
-            btab.Items.Refresh();
+            try
+            {
+                Group group = bbox.SelectedItem as Group;
+                var listt = attedancestd.Where(x => x.Groups == group.id).ToList();
+                btab.ItemsSource = listt;
+                btab.Items.Refresh();
+            }
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
         }
 
         private void Ref1(object sender, SelectionChangedEventArgs e)
         {
-            Group group = sbox.SelectedItem as Group;
-            var listt = attedancestd.Where(x => x.Groups == group.id).ToList();
-            utab.ItemsSource = listt;
-            utab.Items.Refresh();
+            try
+            {
+                Group group = sbox.SelectedItem as Group;
+                var listt = attedancestd.Where(x => x.Groups == group.id).ToList();
+                utab.ItemsSource = listt;
+                utab.Items.Refresh();
+            }
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
         }
 
         private void Savetabb(object sender, RoutedEventArgs e)
         {
-            foreach (var item in utab.ItemsSource)
+            try
             {
-                AttedanceStudent attedanceStudent = item as AttedanceStudent;
-                Progress progress = new Progress()
+                foreach (var item in utab.ItemsSource)
                 {
-                    idstudent = attedanceStudent.IdStudent,
-                    idsubject = attedanceStudent.IdSubject,
-                    rating = attedanceStudent.Rating,
-                };
-                context.Progress.Add(progress);
+                    AttedanceStudent attedanceStudent = item as AttedanceStudent;
+                    Progress progress = new Progress()
+                    {
+                        idstudent = attedanceStudent.IdStudent,
+                        idsubject = attedanceStudent.IdSubject,
+                        rating = attedanceStudent.Rating,
+                    };
+                    context.Progress.Add(progress);
+                }
+                context.SaveChanges();
+                MessageBox.Show("Успешно");
             }
-            context.SaveChanges();
-            MessageBox.Show("Успешно");
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
         }
     }
 }

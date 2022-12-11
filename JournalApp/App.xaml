@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:JournalApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="Label">
+        <Style TargetType="Label" x:Key="qweq">
             <Setter Property="FontFamily" Value="TroubleSide"/>
             <Setter Property="Background" Value="White"/>
         </Style>

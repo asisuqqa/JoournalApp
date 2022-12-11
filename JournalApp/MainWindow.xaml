@@ -32,17 +32,17 @@
 
         <StackPanel Background="#4186d3" MouseLeftButtonDown="GoHome" >
             <Image Height="100" Source="Image5.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+            <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="White"/>
                 </StackPanel>
 
         <StackPanel Grid.Row="1" Background="#4186d3" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
             <Image Height="100" Source="Image6.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <Label Content="Группы" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                </StackPanel>
+                    <Label Content="Группы" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
+         </StackPanel>
 
         <StackPanel Grid.Row="2" Background="#4186d3" x:Name="Disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" >
             <Image Height="100" Source="Image7.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Label Content="Дисциплины" HorizontalContentAlignment="Center" VerticalAlignment="Center" />
+            <Label Content="Дисциплины" HorizontalContentAlignment="Center" VerticalAlignment="Center" Background="White"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Background="#4186d3">

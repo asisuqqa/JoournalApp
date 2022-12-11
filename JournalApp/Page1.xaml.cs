@@ -25,8 +25,11 @@ namespace JournalApp
         {
             InitializeComponent();
             JournalBDEntities context = new JournalBDEntities();
-            var list = context.Laboratory.Select(x => new { x.title, x.maxball, x.idSubject}).ToList();
-            ltab.ItemsSource = list.ToList();
+            ltab.ItemsSource = context.Laboratory.ToList();
+
+            var slist = context.Subject.ToList();
+            slist.Insert(0, new Subject() { id = 0 });
+            lbox.ItemsSource = slist;
         }
 
         private void AddGroup(object sender, RoutedEventArgs e)
@@ -42,6 +45,29 @@ namespace JournalApp
         private void AddLab(object sender, RoutedEventArgs e)
         {
             SecondFrame.Navigate(new AddLabPage());
+        }
+
+        private void comb1(object sender, SelectionChangedEventArgs e)
+        {
+            JournalBDEntities context = new JournalBDEntities();
+            Subject subject = lbox.SelectedItem as Subject;
+            var listt = context.Laboratory.Where(x => x.idSubject == subject.id).ToList();
+            ltab.ItemsSource = listt;
+            ltab.Items.Refresh();
+        }
+
+        private void Retr(object sender, RoutedEventArgs e)
+        {
+            var list = MessageBox.Show("Вы действительно хотите выйти?", "Завершение работы приложения",
+                MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            if(list == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                SecondFrame.Navigate(new Page1());
+            }
         }
     }
 }

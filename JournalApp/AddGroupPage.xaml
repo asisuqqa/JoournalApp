@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:JournalApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddGroupPage">
+      Title="AddGroupPage"
+      Background="#4186d3">
     <Page.Resources>
         <Style x:Key="ButtonClick" TargetType="Button">
             <Style.Triggers>

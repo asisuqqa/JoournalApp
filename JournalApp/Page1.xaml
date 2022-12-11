@@ -7,13 +7,15 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1"
-      Background="White">
+      Background="#4186d3">
 
     <Grid>
+     
+
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -24,19 +26,27 @@
             <ColumnDefinition Width="87"/>
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
-        
+        <Rectangle Grid.ColumnSpan="6" Grid.RowSpan="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <GradientStop Color="#4186d3" Offset="0"></GradientStop>
+                    <GradientStop Color="White" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
         <DataGrid Grid.Row="2" AutoGenerateColumns="False" Grid.ColumnSpan="6" Background="#4186d3" Name="ltab">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Лабароторная" Width="*" Binding="{Binding title}"/>
                 <DataGridTextColumn Header="Максимальный бал" Width="*" Binding="{Binding maxball}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <TextBox Width="172" Height="25" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White"/>
         <Button Width="97" Height="25" Grid.Column="2" Content="Добавить группу" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddGroup"/>
         <Button Width="97" Height="25" Grid.Column="3" Content="Создать предмет" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddSubject"/>
         <Button Width="85" Height="25" Grid.Column="4" Content="Добавить лабу" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddLab"/>
-        <Button Width="38" Height="25" Grid.Column="5" Content="Выйти" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <Frame Grid.ColumnSpan ="6" Grid.RowSpan="3" x:Name="SecondFrame" NavigationUIVisibility="Hidden"/>
+        <Button Width="38" Height="25" Grid.Column="5" Content="Выйти" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Retr"/>
+        <Label Content="Выберите предмет" Grid.Row="1"  VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+        <ComboBox Name="lbox" Grid.Column="0" Grid.Row="1" DisplayMemberPath="title"  HorizontalAlignment="Center" Width="100" Height="25" SelectionChanged="comb1"/>
+        <Frame Grid.ColumnSpan ="6" Grid.RowSpan="4" x:Name="SecondFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

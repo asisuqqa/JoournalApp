@@ -35,9 +35,8 @@ namespace JournalApp
             utab.ItemsSource = qlist.ToList();           
 
             var slist = context.Subject.ToList();
-            slist.Insert(0, new Subject() { title = "Все", id = 0 });
-            sbox.ItemsSource = slist;
-            sbox.ItemsSource = context.Subject.ToList();
+            slist.Insert(0, new Subject() {id = 0 });
+            subox.ItemsSource = slist;
         }
 
         private void DelateUs(object sender, RoutedEventArgs e)
@@ -99,6 +98,31 @@ namespace JournalApp
         private void EditPos(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Функция в разработке :C", "Подтверждение", MessageBoxButton.OK);
+        }
+
+        private void refsub(object sender, SelectionChangedEventArgs e)
+        {
+            JournalBDEntities context = new JournalBDEntities();
+            Subject subject = subox.SelectedItem as Subject;
+            var listt = context.Progress.Select(x=>new { x.Student.fio,x.Subject.title,x.idsubject,x.Subject.id ,x.rating}).Where(x => x.idsubject == subject.id).ToList();
+            var zlist = context.Attendance.Select(x => new { x.Student.fio, x.Subject.title, x.idsubject, x.Subject.id, x.date,x.presence }).Where(x => x.idsubject == subject.id).ToList();
+            utab.ItemsSource = listt;
+            ptab.ItemsSource = zlist;
+            utab.Items.Refresh();          
+            ptab.Items.Refresh();
+        }
+
+        private void text(object sender, RoutedEventArgs e)
+        {
+            var list = context.Attendance.Select(x=>new { x.Student.fio,x.presence,x.date,x.Subject.title}).ToList();
+            var slist = context.Progress.Select(x => new { x.Student.fio, x.rating , x.Subject.title }).ToList();
+            if (!string.IsNullOrWhiteSpace(subtext.Text))
+            {
+                list = list.Where(x => x.fio.ToLower().Contains(subtext.Text.ToLower())).ToList();
+                slist = slist.Where(x => x.fio.ToLower().Contains(subtext.Text.ToLower())).ToList();
+                utab.ItemsSource = slist.ToList();
+                ptab.ItemsSource = list.ToList();
+            }
         }
     } 
 }

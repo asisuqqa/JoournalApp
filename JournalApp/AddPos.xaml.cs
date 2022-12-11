@@ -25,11 +25,7 @@ namespace JournalApp
         {
             InitializeComponent();
             context = new JournalBDEntities();
-            //context = cont;
-            //flag = true;
         }
-
-        //bool flag;
 
         private void AddPosButtonClick(object sender, RoutedEventArgs e)
         {
@@ -37,42 +33,20 @@ namespace JournalApp
             {
                 Attendance attendance = new Attendance()
                 {
-                    date = (DateTime)datepic.SelectedDate,
+                    date = Convert.ToDateTime(dateBox.Text),
                     presence = Convert.ToBoolean(posBox.Text),
                     idstudent = Convert.ToInt32(studentBox.Text),
                     idsubject = Convert.ToInt32(subjectBox.Text)
                 };
                 context.Attendance.Add(attendance);
                 context.SaveChanges();
+                MessageBox.Show("Добавление успешно");
                 fourthFrame.Navigate(new Page1());
             }
             catch
             {
                 MessageBox.Show("Упс, что-то пошло не так");
             }
-
-            //if (flag == true)
-            //{
-            //    Attendance attendance = new Attendance()
-            //    {                    
-            //        date = (DateTime)datepic.SelectedDate,
-            //        presence = Convert.ToBoolean(posBox.Text),
-            //        idstudent = Convert.ToInt32(studentBox.Text),
-            //        idsubject = Convert.ToInt32(subjectBox.Text)                  
-            //    };
-            //    context.Attendance.Add(attendance);
-            //    context.SaveChanges();
-            //    //NavigationService.Navigate(new Page2());
-            //}
-            //else
-            //{
-            //    context.Attendance.Find(attendancemin.id).date = (DateTime)datepic.SelectedDate;
-            //    context.Attendance.Find(attendancemin.id).presence = Convert.ToBoolean(posBox.Text);
-            //    context.Attendance.Find(attendancemin.id).idstudent = Convert.ToInt32(studentBox.Text);
-            //    context.Attendance.Find(attendancemin.id).idsubject = Convert.ToInt32(subjectBox.Text);
-            //    context.SaveChanges();
-            //    //NavigationService.Navigate(new Page2());
-            //}
         }
 
         //Attendance attendancemin;

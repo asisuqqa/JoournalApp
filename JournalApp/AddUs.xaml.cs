@@ -39,6 +39,7 @@ namespace JournalApp
                 };
                 context.Progress.Add(progress);
                 context.SaveChanges();
+                MessageBox.Show("Добавление успешно");
                 fifthFrame.Navigate(new Page1());
             }
             catch

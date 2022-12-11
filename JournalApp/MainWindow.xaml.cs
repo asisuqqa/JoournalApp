@@ -84,7 +84,7 @@ namespace JournalApp
                 {
                     "1.wav",
                     "2.wav",
-                    //"3.wav",
+                    "3.wav",
                     "4.wav" };
                 var player = new SoundPlayer();
 

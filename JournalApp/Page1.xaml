@@ -9,23 +9,48 @@
       Title="Page1"
       Background="#4186d3">
 
-    <Grid>
-     
+    <Page.Resources>
+        <Style x:Key="ButtonClick" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsFocused" Value="True">
+                    <Setter Property="Button.Foreground" Value="#8170d8"/>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Foreground" Value="#8170d8"/>
+                    <Setter Property="Button.FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#8170d8"/>
+        </Style>
+    </Page.Resources>
 
+    <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="87"/>
-            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="60" />
         </Grid.ColumnDefinitions>
+        
         <Rectangle Grid.ColumnSpan="6" Grid.RowSpan="2" >
             <Rectangle.Fill>
                 <LinearGradientBrush>
@@ -41,10 +66,18 @@
                 <DataGridTextColumn Header="Максимальный бал" Width="*" Binding="{Binding maxball}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Width="97" Height="25" Grid.Column="2" Content="Добавить группу" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddGroup"/>
-        <Button Width="97" Height="25" Grid.Column="3" Content="Создать предмет" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddSubject"/>
-        <Button Width="85" Height="25" Grid.Column="4" Content="Добавить лабу" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="AddLab"/>
-        <Button Width="38" Height="25" Grid.Column="5" Content="Выйти" Foreground="White" Background="#4186d3" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Retr"/>
+        <Border Grid.Column="1" Width="110" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Margin="5" BorderThickness="1" BorderBrush="#4186d3" Background="#4186d3">
+            <Button Content="Добавить группу" Foreground="White" Background="#4186d3" Style="{StaticResource ButtonClick}" Opacity="0.8" Click="AddGroup"/>
+        </Border>
+        <Border Width="110" Height="25" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Margin="5" BorderThickness="1" BorderBrush="#4186d3" Background="#4186d3">
+            <Button Content="Создать предмет" Foreground="White" Background="#4186d3" Click="AddSubject" Style="{StaticResource ButtonClick}" Opacity="0.8"/>
+        </Border>
+        <Border Width="100" Height="25" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Margin="5" BorderThickness="1" BorderBrush="#4186d3" Background="#4186d3">
+            <Button Content="Добавить лабу" Foreground="White" Background="#4186d3" Click="AddLab" Style="{StaticResource ButtonClick}" Opacity="0.8"/>
+        </Border>
+        <Border Width="50" Height="25" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="10" Margin="5" BorderThickness="1" BorderBrush="#4186d3" Background="#4186d3">
+            <Button Content="Выйти" Foreground="White" Background="#4186d3" Click="Retr" Style="{StaticResource ButtonClick}" Opacity="0.8"/>
+        </Border>
         <Label Content="Выберите предмет" Grid.Row="1"  VerticalAlignment="Center" FontSize="15" Foreground="White"/>
         <ComboBox Name="lbox" Grid.Column="0" Grid.Row="1" DisplayMemberPath="title"  HorizontalAlignment="Center" Width="100" Height="25" SelectionChanged="comb1"/>
         <Frame Grid.ColumnSpan ="6" Grid.RowSpan="4" x:Name="SecondFrame" NavigationUIVisibility="Hidden"/>

@@ -28,7 +28,6 @@ namespace JournalApp
             
             this.group = group;
             this.context = context;
-            double avg = context.Progress.Average(x => x.rating);
             var qlist = context.Progress.Select(x => new { x.Student.groups, x.Student.fio, x.Subject.title,x.rating}).Where(x => x.groups == group.id).ToList();
             var list = context.Attendance.Select(x => new { x.Student.groups,x.Student.fio,x.Subject.title,x.presence,x.date}).Where(x=>x.groups==group.id).ToList();
             ptab.ItemsSource = list.ToList();         

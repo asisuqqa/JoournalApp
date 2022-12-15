@@ -98,5 +98,13 @@ namespace JournalApp
                 }
             }, TaskCreationOptions.LongRunning);
         }
+
+        private void refmainwin(object sender, RoutedEventArgs e)
+        {
+            MainWindow newWindow = new MainWindow();
+            Application.Current.MainWindow = newWindow;
+            newWindow.Show();
+            this.Close();
+        }
     }
 }

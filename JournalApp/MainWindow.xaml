@@ -6,7 +6,32 @@
         xmlns:local="clr-namespace:JournalApp"
         mc:Ignorable="d"
         Title="Журнал" Height="600" Width="1000"
-        Background="#c3d6dc">
+        Background="#4186d3">
+    <Window.Resources>
+        <Style x:Key="ButtonClick" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsFocused" Value="True">
+                    <Setter Property="Button.Foreground" Value="#8170d8"/>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                    <Setter Property="Button.Foreground" Value="#8170d8"/>
+                    <Setter Property="Button.FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="100"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="#8170d8"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -15,13 +40,20 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.RowSpan="4">
+        <Border CornerRadius="100" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="1" BorderBrush="Black" >
+            <Button  Style="{StaticResource ButtonClick}" Opacity="0.8" Background="#689AD3" Click="refmainwin">
+                <Image Source="ghfhgfg.png"/>
+            </Button>
+        </Border>
+
+        <Rectangle Grid.Row="1" Grid.RowSpan="4">
             <Rectangle.Fill>
                 <LinearGradientBrush>
                     <GradientStop Color="#4186d3" Offset="0"></GradientStop>
@@ -30,17 +62,17 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <StackPanel Background="#4186d3" MouseLeftButtonDown="GoHome" >
+        <StackPanel Background="#4186d3" MouseLeftButtonDown="GoHome"  Grid.Row="1">
             <Image Height="100" Source="Image5.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <Label Content="Профиль" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="White"/>
                 </StackPanel>
 
-        <StackPanel Grid.Row="1" Background="#4186d3" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
+        <StackPanel Grid.Row="2" Background="#4186d3" x:Name="Groups" MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" >
             <Image Height="100" Source="Image6.png" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <Label Content="Группы" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="White"/>
          </StackPanel>
 
-        <StackPanel Grid.Row="2" Background="#4186d3" x:Name="Disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" >
+        <StackPanel Grid.Row="3" Background="#4186d3" x:Name="Disciplines" MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" >
             <Image Height="100" Source="Image7.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Label Content="Дисциплины" HorizontalContentAlignment="Center" VerticalAlignment="Center" Background="White"/>
         </StackPanel>
@@ -51,10 +83,10 @@
         </StackPanel>
 
 
-        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="White"/>
+        <Frame Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="5" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="White"/>
         
 
-        <ListView Grid.Row="1"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="group"  MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" Grid.Column="1" Background="#4186d3" >
+        <ListView Grid.Row="2"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="group"  MouseEnter="groupMouseEnter" MouseLeave="groupMouseLeave" Grid.Column="1" Background="#4186d3" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="90" Height="20" MouseLeftButtonDown="GoGroup">
@@ -69,7 +101,7 @@
             </ListView.ItemsPanel>
         </ListView>
 
-        <ListView Grid.Row="2"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="disciplines"  MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" Grid.Column="1" Background="#4186d3" >
+        <ListView Grid.Row="3"  Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="disciplines"  MouseEnter="disciplinesMouseEnter" MouseLeave="disciplinesMouseLeave" Grid.Column="1" Background="#4186d3" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="90" Height="20"  MouseLeftButtonDown="GoDisp" >

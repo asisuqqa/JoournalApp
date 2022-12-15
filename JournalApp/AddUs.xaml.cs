@@ -47,5 +47,25 @@ namespace JournalApp
                 MessageBox.Show("Упс, что-то пошло не так");
             }
         }
+
+        Progress progress1;
+
+        public AddUs(JournalBDEntities cont, Progress progress)
+        {
+
+            try
+            {
+                InitializeComponent();
+                context = cont;
+                progress1 = progress;
+                studentBox.Text = progress.idstudent.ToString();
+                subjectBox.Text = progress.idsubject.ToString();
+                ballBox.Text = progress.rating.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
+        }
     }
 }

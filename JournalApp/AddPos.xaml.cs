@@ -49,14 +49,26 @@ namespace JournalApp
             }
         }
 
-        //Attendance attendancemin;
+        Attendance attendance1;
 
-        //public AddPos(JournalBDEntities cont, Attendance attendance)
-        //{
-        //    InitializeComponent();
-        //    context = cont;
-        //    attendancemin = attendance;
-        //    posBox.Text = attendance.presence.ToString;
-        //}
+        public AddPos(JournalBDEntities cont, Attendance attendance)
+        {
+
+            InitializeComponent();
+            context = cont;
+            attendance1 = attendance;
+
+            try
+            {                
+                dateBox.Text = attendance.date.ToString();
+                posBox.Text = attendance.presence.ToString();
+                studentBox.Text = attendance.idstudent.ToString();
+                subjectBox.Text = attendance.idsubject.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Упс, что-то пошло не так");
+            }
+        }
     }
 }

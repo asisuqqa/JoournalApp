@@ -92,12 +92,14 @@ namespace JournalApp
 
         private void EditUs(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Функция в разработке :C", "Подтверждение", MessageBoxButton.OK);
+            Progress progress = utab.SelectedItem as Progress;
+            NavigationService.Navigate(new AddUs(context, progress));
         }
 
         private void EditPos(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Функция в разработке :C", "Подтверждение", MessageBoxButton.OK);
+            Attendance attendance = ptab.SelectedItem as Attendance;
+            NavigationService.Navigate(new AddPos(context, attendance));
         }
 
         private void refsub(object sender, SelectionChangedEventArgs e)
@@ -108,7 +110,7 @@ namespace JournalApp
             var zlist = context.Attendance.Select(x => new { x.Student.fio, x.Subject.title, x.idsubject, x.Subject.id, x.date,x.presence }).Where(x => x.idsubject == subject.id).ToList();
             utab.ItemsSource = listt;
             ptab.ItemsSource = zlist;
-            utab.Items.Refresh();          
+            utab.Items.Refresh();       
             ptab.Items.Refresh();
         }
 
